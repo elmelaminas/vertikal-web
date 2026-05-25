@@ -38,7 +38,7 @@ const TYPES = [
 export function PlatformTypes() {
   return (
     <section className="relative bg-[#0A1628] py-24 overflow-hidden">
-      <LogoWatermark position="bottom-right" size={600} opacity={0.06} variant="dark" rotation={15} />
+      <LogoWatermark position="bottom-right" size={650} opacity={0.12} variant="dark" rotation={15} />
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

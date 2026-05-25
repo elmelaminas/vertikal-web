@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { LogoWatermark } from "@/components/ui/LogoWatermark";
 import { useEffect, useRef } from "react";
 
 function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
@@ -34,17 +35,8 @@ const STATS = [
 export function Stats() {
   return (
     <section className="relative bg-[#1E4D8C] py-20 border-y-4 border-[#E87722] overflow-hidden">
-      {/* Pattern de logos repetidos como marca de agua */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: "url('/logo-vertikal.png')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "180px 180px",
-          opacity: 0.04,
-          mixBlendMode: "screen",
-        }}
-      />
+      {/* Logo watermark centrado */}
+      <LogoWatermark position="center" size={600} opacity={0.10} variant="dark" />
 
       <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 relative z-10">
         {STATS.map((stat, i) => (

@@ -3,8 +3,8 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Phone, Mail, Clock, MapPin } from "lucide-react";
-import Image from "next/image";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES, WHATSAPP_NUMBER } from "@/lib/constants";
+import { LogoWatermark } from "@/components/ui/LogoWatermark";
 
 export function ContactCTA() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -24,17 +24,10 @@ export function ContactCTA() {
     >
       {/* Logo gigante con parallax */}
       <motion.div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-        style={{
-          width: 800,
-          height: 800,
-          y: logoY,
-          scale: logoScale,
-          opacity: 0.07,
-          mixBlendMode: "screen",
-        }}
+        className="absolute inset-0 pointer-events-none"
+        style={{ y: logoY, scale: logoScale }}
       >
-        <Image src="/logo-vertikal.png" alt="" fill className="object-contain" aria-hidden="true" />
+        <LogoWatermark position="center" size={800} opacity={0.14} variant="dark" />
       </motion.div>
 
       {/* Orange accent lines */}
