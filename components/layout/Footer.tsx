@@ -34,13 +34,15 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="mb-5">
-              <Image
-                src="/logo-vertikal.png"
-                alt="VERTIKAL"
-                width={120}
-                height={120}
-                className="object-contain mb-3"
-              />
+              <div className="bg-white rounded-lg p-3 inline-block mb-3">
+                <Image
+                  src="/logo-vertikal.png"
+                  alt="VERTIKAL"
+                  width={120}
+                  height={120}
+                  className="object-contain h-24 w-24"
+                />
+              </div>
               <p className="text-sm text-vk-steel mt-2">
                 Plataformas Elevables · Venta · Renta · Servicio · Refacciones
               </p>

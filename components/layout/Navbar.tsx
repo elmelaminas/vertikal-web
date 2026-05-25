@@ -56,15 +56,17 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between lg:h-20">
           {/* Logo */}
-          <a href="#inicio" className="flex items-center gap-2 group">
-            <Image
-              src="/logo-vertikal.png"
-              alt="VERTIKAL"
-              width={52}
-              height={52}
-              priority
-              className="object-contain h-12 w-12 md:h-14 md:w-14 transition-opacity duration-200 group-hover:opacity-85"
-            />
+          <a href="#inicio" className="flex items-center gap-3 group">
+            <div className="bg-white rounded-lg p-1.5 shadow-md group-hover:shadow-orange-500/30 transition-shadow duration-200">
+              <Image
+                src="/logo-vertikal.png"
+                alt="VERTIKAL - Plataformas Elevables"
+                width={44}
+                height={44}
+                priority
+                className="object-contain h-10 w-10 md:h-11 md:w-11"
+              />
+            </div>
           </a>
 
           {/* Desktop nav */}

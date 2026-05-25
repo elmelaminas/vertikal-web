@@ -156,6 +156,16 @@ export function Scene() {
         />
         <pointLight position={[3, 5, 3]} color="#E87722" intensity={0.8} distance={20} />
         <OrangeSpotlight />
+        <spotLight
+          position={[5, 12, 4]}
+          angle={0.5}
+          penumbra={0.6}
+          intensity={1.8}
+          color="#FFF4E0"
+          castShadow
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+        />
 
         <Stars
           radius={90}
