@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Required for proper tree-shaking of Three.js
+  transpilePackages: ["three"],
 };
 
 export default nextConfig;

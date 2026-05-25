@@ -1,26 +1,164 @@
 @import "tailwindcss";
 
+@theme {
+  /* VK Brand Colors */
+  --color-vk-blue: #1E4D8C;
+  --color-vk-blue-dark: #143866;
+  --color-vk-orange: #E87722;
+  --color-vk-orange-hot: #FF8A2B;
+  --color-vk-graphite: #3A3A3A;
+  --color-vk-steel: #6B7280;
+  --color-vk-white: #FAFAFA;
+  --color-vk-black: #0A0A0A;
+
+  /* Typography */
+  --font-display: var(--font-bebas), "Anton", "Impact", sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  /* Animations */
+  --animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
+  --animate-bounce-gentle: bounce-gentle 2s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-scroll-indicator: scroll-indicator 2s ease-in-out infinite;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --vk-blue: #1E4D8C;
+  --vk-blue-dark: #143866;
+  --vk-orange: #E87722;
+  --vk-orange-hot: #FF8A2B;
+  --vk-graphite: #3A3A3A;
+  --vk-steel: #6B7280;
+  --vk-white: #FAFAFA;
+  --vk-black: #0A0A0A;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.05); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-8px) rotate(0.5deg); }
+  66% { transform: translateY(-4px) rotate(-0.5deg); }
+}
+
+@keyframes scroll-indicator {
+  0% { opacity: 1; transform: translateY(0); }
+  50% { opacity: 0.4; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smoothing */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--vk-black);
+  color: var(--vk-white);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Smooth reveal animation helper */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Industrial grid texture overlay */
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(30, 77, 140, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 77, 140, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* WhatsApp pulse animation */
+.wa-pulse {
+  animation: pulse-slow 2.5s ease-in-out infinite;
+}
+
+/* Orange glow effect */
+.orange-glow {
+  box-shadow: 0 0 20px rgba(232, 119, 34, 0.4), 0 0 40px rgba(232, 119, 34, 0.2);
+}
+
+/* Blue glow effect */
+.blue-glow {
+  box-shadow: 0 0 20px rgba(30, 77, 140, 0.5), 0 0 40px rgba(30, 77, 140, 0.2);
+}
+
+/* 3D tilt effect */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vk-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vk-blue);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vk-orange);
+}
+
+/* Section separator */
+.section-separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 119, 34, 0.4), transparent);
+}
+
+/* Metallic text effect */
+.text-metallic {
+  background: linear-gradient(135deg, #c0c0c0 0%, #ffffff 50%, #a0a0a0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
