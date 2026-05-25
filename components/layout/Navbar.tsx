@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 
@@ -55,7 +56,17 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between lg:h-20">
           {/* Logo */}
-          <a href="#inicio" className="flex items-center gap-2 group">
+          <a href="#inicio" className="flex items-center gap-3 group">
+            <div className="relative h-12 w-12 flex-shrink-0 lg:h-14 lg:w-14">
+              <Image
+                src="/logo-vertikal.png"
+                alt="VERTIKAL logo"
+                fill
+                sizes="56px"
+                className="object-contain"
+                priority
+              />
+            </div>
             <div className="flex flex-col leading-none">
               <span
                 className="text-2xl lg:text-3xl font-display tracking-wider text-vk-white group-hover:text-vk-orange transition-colors duration-200"

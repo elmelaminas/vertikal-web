@@ -5,23 +5,24 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import * as THREE from "three";
 import { scrollStore } from "@/lib/scroll-store";
-import { Platform } from "./Platform";
+import { Z45Lift } from "./Z45Lift";
 
-const skyDawn = new THREE.Color("#060818");
-const skySunset = new THREE.Color("#1a0702");
-const fogDawn = new THREE.Color("#060818");
-const fogSunset = new THREE.Color("#180501");
-const _tmpColor = new THREE.Color();
+// ─── Sky colors ───────────────────────────────────────────────────────────────
+const skyNight  = new THREE.Color("#050812");
+const skySunset = new THREE.Color("#1c0801");
+const fogNight  = new THREE.Color("#050812");
+const fogSunset = new THREE.Color("#190401");
+const _skyColor = new THREE.Color();
 
 function SceneBackground() {
   const { scene } = useThree();
 
   useFrame(() => {
     const p = scrollStore.progress;
-    _tmpColor.lerpColors(skyDawn, skySunset, p * 0.65);
-    scene.background = _tmpColor.clone();
+    _skyColor.lerpColors(skyNight, skySunset, p * 0.7);
+    scene.background = _skyColor.clone();
     if (scene.fog instanceof THREE.Fog) {
-      scene.fog.color.lerpColors(fogDawn, fogSunset, p * 0.55);
+      scene.fog.color.lerpColors(fogNight, fogSunset, p * 0.6);
     }
   });
 
@@ -31,20 +32,22 @@ function SceneBackground() {
 function CameraRig() {
   const { camera } = useThree();
   const smooth = useRef(0);
-  const lookTarget = useRef(new THREE.Vector3(0, -1, 0));
+  const lookAt  = useRef(new THREE.Vector3(0, 1, 0));
 
   useFrame(() => {
-    smooth.current = THREE.MathUtils.lerp(smooth.current, scrollStore.progress, 0.035);
+    smooth.current = THREE.MathUtils.lerp(smooth.current, scrollStore.progress, 0.03);
     const p = smooth.current;
 
+    // Start: slightly to the side so we see the whole machine + boom
+    // End: pull back and up to follow the basket at full extension
     camera.position.set(
-      THREE.MathUtils.lerp(4.5, 2.5, p),
-      THREE.MathUtils.lerp(0.5, 10, p),
-      THREE.MathUtils.lerp(9, 6.5, p)
+      THREE.MathUtils.lerp(7,   5,  p),
+      THREE.MathUtils.lerp(1.5, 9,  p),
+      THREE.MathUtils.lerp(10,  13, p)
     );
 
-    lookTarget.current.set(0, THREE.MathUtils.lerp(-1.5, 4, p), 0);
-    camera.lookAt(lookTarget.current);
+    lookAt.current.set(0, THREE.MathUtils.lerp(0.5, 5.5, p), 0);
+    camera.lookAt(lookAt.current);
   });
 
   return null;
@@ -54,10 +57,10 @@ function Ground() {
   return (
     <group position={[0, -3.5, 0]}>
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[80, 80]} />
-        <meshStandardMaterial color="#222222" metalness={0.05} roughness={0.95} />
+        <planeGeometry args={[100, 100]} />
+        <meshStandardMaterial color="#1e1e1e" metalness={0.04} roughness={0.96} />
       </mesh>
-      <gridHelper args={[80, 24, "#1E4D8C", "#181818"]} />
+      <gridHelper args={[100, 30, "#1E4D8C", "#161616"]} />
     </group>
   );
 }
@@ -66,105 +69,108 @@ function AmbientParticles() {
   const pointsRef = useRef<THREE.Points>(null);
 
   const geometry = useMemo(() => {
-    const count = 180;
-    const positions = new Float32Array(count * 3);
+    const count = 220;
+    const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 22;
-      positions[i * 3 + 1] = Math.random() * 16 - 2;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 22;
+      pos[i * 3]     = (Math.random() - 0.5) * 28;
+      pos[i * 3 + 1] = Math.random() * 18 - 3;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 28;
     }
     const geo = new THREE.BufferGeometry();
-    geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
     return geo;
   }, []);
-
-  useFrame((state) => {
-    if (!pointsRef.current) return;
-    const p = scrollStore.progress;
-    pointsRef.current.rotation.y = state.clock.elapsedTime * 0.018;
-    const mat = pointsRef.current.material as THREE.PointsMaterial;
-    mat.opacity = THREE.MathUtils.lerp(mat.opacity, 0.08 + p * 0.45, 0.05);
-  });
 
   const material = useMemo(
     () =>
       new THREE.PointsMaterial({
-        size: 0.045,
+        size: 0.048,
         color: "#E87722",
         transparent: true,
-        opacity: 0.08,
+        opacity: 0.06,
         sizeAttenuation: true,
         depthWrite: false,
       }),
     []
   );
 
+  useFrame((state) => {
+    if (!pointsRef.current) return;
+    const p = scrollStore.progress;
+    pointsRef.current.rotation.y = state.clock.elapsedTime * 0.016;
+    const mat = pointsRef.current.material as THREE.PointsMaterial;
+    mat.opacity = THREE.MathUtils.lerp(mat.opacity, 0.06 + p * 0.42, 0.04);
+  });
+
   return <points ref={pointsRef} geometry={geometry} material={material} />;
 }
 
 function OrangeSpotlight() {
-  const lightRef = useRef<THREE.PointLight>(null);
+  const ref = useRef<THREE.PointLight>(null);
 
   useFrame(() => {
-    if (!lightRef.current) return;
+    if (!ref.current) return;
     const p = scrollStore.progress;
-    lightRef.current.intensity = THREE.MathUtils.lerp(1.2, 5, p);
-    lightRef.current.position.y = THREE.MathUtils.lerp(-2, 10, p);
+    ref.current.intensity = THREE.MathUtils.lerp(1.0, 5.5, p);
+    ref.current.position.y = THREE.MathUtils.lerp(-1, 11, p);
   });
 
   return (
     <pointLight
-      ref={lightRef}
-      position={[-4, -2, 3]}
+      ref={ref}
+      position={[-5, -1, 4]}
       color="#FF8A2B"
-      intensity={1.2}
-      distance={30}
+      intensity={1.0}
+      distance={35}
     />
   );
 }
 
 export function Scene() {
   return (
-    <div
-      className="fixed inset-0"
-      style={{ zIndex: -10 }}
-      aria-hidden="true"
-    >
+    <div className="fixed inset-0" style={{ zIndex: -10 }} aria-hidden="true">
       <Canvas
-        camera={{ position: [4.5, 0.5, 9], fov: 55, near: 0.1, far: 200 }}
+        camera={{ position: [7, 1.5, 10], fov: 45, near: 0.1, far: 250 }}
         gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
         dpr={[1, 1.5]}
         shadows
       >
-        <fog attach="fog" args={["#060818", 22, 75]} />
+        <fog attach="fog" args={["#050812", 25, 85]} />
         <SceneBackground />
         <CameraRig />
 
-        <ambientLight intensity={0.22} color="#8090c0" />
+        {/* Lighting */}
+        <ambientLight intensity={0.28} color="#707898" />
         <directionalLight
-          position={[8, 20, 5]}
-          intensity={1.7}
-          color="#fff5e0"
+          position={[10, 15, 5]}
+          intensity={1.2}
+          color="#FFF4E0"
           castShadow
-          shadow-mapSize={[2048, 2048]}
+          shadow-mapSize-width={2048}
+          shadow-mapSize-height={2048}
         />
-        <pointLight position={[0, 15, 0]} color="#4060a0" intensity={0.7} distance={35} />
+        <directionalLight
+          position={[-5, 8, -3]}
+          intensity={0.4}
+          color="#A0C8FF"
+        />
+        <pointLight position={[3, 5, 3]} color="#E87722" intensity={0.8} distance={20} />
         <OrangeSpotlight />
 
         <Stars
-          radius={80}
-          depth={60}
+          radius={90}
+          depth={65}
           count={3000}
           factor={3}
           saturation={0}
           fade
-          speed={0.3}
+          speed={0.25}
         />
 
         <Suspense fallback={null}>
           <Ground />
           <AmbientParticles />
-          <Platform />
+          <Z45Lift />
         </Suspense>
       </Canvas>
     </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 
 const FOOTER_LINKS = {
@@ -32,15 +33,24 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="mb-4">
+            <div className="mb-5">
+              <div className="relative h-[72px] w-[72px] mb-3">
+                <Image
+                  src="/logo-vertikal.png"
+                  alt="VERTIKAL logo"
+                  fill
+                  sizes="72px"
+                  className="object-contain"
+                />
+              </div>
               <div
-                className="text-4xl font-display text-white tracking-wider"
+                className="text-3xl font-display text-white tracking-wider"
                 style={{ fontFamily: "var(--font-bebas), sans-serif" }}
               >
                 VERTIKAL
               </div>
-              <div className="text-xs tracking-[0.2em] text-vk-orange font-semibold uppercase">
-                Plataformas Elevables
+              <div className="text-[10px] tracking-[0.2em] text-vk-orange font-semibold uppercase">
+                Plataformas Elevables · Venta · Renta · Servicio · Refacciones
               </div>
             </div>
             <p className="text-sm text-vk-steel leading-relaxed mb-6">

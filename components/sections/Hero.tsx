@@ -70,8 +70,10 @@ export function Hero() {
             <strong className="text-vk-white font-semibold">
               Genie, JLG y Haulotte
             </strong>{" "}
-            en México. Servicio técnico certificado, refacciones originales y
-            atención inmediata.
+            en México. Articuladas · Tijeras · Telescópicas —{" "}
+            <span className="text-vk-orange font-semibold">
+              Desde 6 hasta 56 metros de alcance.
+            </span>
           </p>
 
           {/* CTAs */}
