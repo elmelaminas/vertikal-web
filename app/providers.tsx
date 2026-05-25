@@ -1,15 +1,7 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
-import ReactLenis, { useLenis } from "lenis/react";
-import { scrollStore } from "@/lib/scroll-store";
-
-function ScrollTracker() {
-  useLenis(({ progress }: { progress: number }) => {
-    scrollStore.progress = progress;
-  });
-  return null;
-}
+import { type ReactNode } from "react";
+import ReactLenis from "lenis/react";
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
@@ -21,7 +13,6 @@ export function Providers({ children }: { children: ReactNode }) {
         duration: 1.2,
       }}
     >
-      <ScrollTracker />
       {children}
     </ReactLenis>
   );

@@ -1,136 +1,144 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
+import { SafeImage } from "@/components/ui/SafeImage";
 
 export function Hero() {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const ctasRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const elements = [
-      titleRef.current,
-      subtitleRef.current,
-      ctasRef.current,
-    ].filter(Boolean);
-
-    elements.forEach((el, i) => {
-      if (!el) return;
-      el.style.opacity = "0";
-      el.style.transform = "translateY(30px)";
-      setTimeout(() => {
-        el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
-        el.style.opacity = "1";
-        el.style.transform = "translateY(0)";
-      }, 200 + i * 150);
-    });
-  }, []);
-
   return (
     <section
       id="inicio"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#0A1628] via-[#143866] to-[#0A1628]"
     >
-      {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-vk-black/80 via-vk-black/40 to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-vk-black/60 via-transparent to-transparent pointer-events-none" />
+      {/* Background image */}
+      <div className="absolute inset-0 z-0">
+        <SafeImage
+          src="/hero/plataforma-obra.jpg"
+          alt="Plataforma elevable en obra"
+          fill
+          priority
+          className="object-cover opacity-40"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628] via-[#0A1628]/80 to-transparent" />
+      </div>
 
       {/* Grid overlay */}
-      <div className="absolute inset-0 grid-overlay opacity-30 pointer-events-none" />
+      <div
+        className="absolute inset-0 opacity-10 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(30,77,140,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(30,77,140,0.4) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <div className="max-w-3xl">
-          {/* Badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-vk-orange/30 bg-vk-orange/10 px-4 py-1.5 backdrop-blur-sm">
-            <span className="h-2 w-2 rounded-full bg-vk-orange animate-pulse" />
-            <span className="text-xs font-semibold tracking-[0.2em] text-vk-orange uppercase">
-              Genie · JLG · Haulotte · México
-            </span>
-          </div>
-
-          {/* Main title */}
-          <h1
-            ref={titleRef}
-            className="mb-6 font-display text-6xl sm:text-7xl lg:text-[7rem] leading-none tracking-wide text-vk-white"
-            style={{ fontFamily: "var(--font-bebas), sans-serif" }}
+      <div className="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center pt-24 pb-16">
+        {/* Left: text */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.span
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-block px-4 py-1.5 bg-[#E87722]/20 border border-[#E87722]/40 text-[#E87722] text-sm font-semibold rounded-full mb-6 tracking-wide"
           >
-            ELEVAMOS
-            <br />
-            <span className="text-vk-orange">TU PROYECTO</span>
+            PLATAFORMAS ELEVABLES EN MÉXICO
+          </motion.span>
+
+          <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-6">
+            Elevamos tu{" "}
+            <span className="text-[#E87722]">proyecto</span>
+            <br />a nuevas alturas
           </h1>
 
-          {/* Subtitle */}
-          <p
-            ref={subtitleRef}
-            className="mb-10 max-w-xl text-lg sm:text-xl text-vk-white/75 leading-relaxed font-light"
-          >
+          <p className="text-xl text-gray-300 mb-8 max-w-xl leading-relaxed">
             Venta y renta de plataformas elevables{" "}
-            <strong className="text-vk-white font-semibold">
-              Genie, JLG y Haulotte
-            </strong>{" "}
-            en México. Articuladas · Tijeras · Telescópicas —{" "}
-            <span className="text-vk-orange font-semibold">
-              Desde 6 hasta 56 metros de alcance.
-            </span>
+            <strong className="text-white">Genie, JLG y Haulotte</strong>.
+            Articuladas, de tijera y telescópicas. Alcances desde{" "}
+            <span className="text-[#E87722] font-semibold">6 hasta 56 metros</span>.
           </p>
 
-          {/* CTAs */}
-          <div
-            ref={ctasRef}
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
-          >
+          <div className="flex flex-wrap gap-4">
             <a
               href="#maquinas"
-              className="inline-flex items-center gap-2 rounded-full bg-vk-orange px-8 py-4 text-base font-bold text-white tracking-wide transition-all duration-200 hover:bg-vk-orange-hot hover:scale-105 orange-glow shadow-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#E87722] hover:bg-[#FF8A2B] text-white font-bold rounded-lg transition-all shadow-lg shadow-[#E87722]/30 hover:shadow-[#E87722]/50 hover:scale-105"
             >
-              VER MÁQUINAS
+              Ver catálogo <ArrowRight className="w-5 h-5" />
             </a>
             <a
               href={buildWhatsAppLink(WHATSAPP_MESSAGES.default)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-white/40 px-8 py-4 text-base font-bold text-white tracking-wide backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white/10"
+              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/40 text-white hover:bg-white hover:text-[#1E4D8C] font-bold rounded-lg transition-all hover:scale-105"
             >
-              COTIZAR POR WHATSAPP
+              <MessageCircle className="w-5 h-5" /> Cotizar ahora
             </a>
           </div>
 
-          {/* Stats bar */}
-          <div className="mt-14 flex flex-wrap gap-8 border-t border-white/10 pt-8">
+          {/* Quick stats */}
+          <div className="mt-12 flex flex-wrap gap-8 border-t border-white/10 pt-8">
             {[
-              { value: "15+", label: "Años de experiencia" },
-              { value: "500+", label: "Equipos entregados" },
+              { value: "15+", label: "Años de exp." },
+              { value: "200+", label: "Equipos en flota" },
               { value: "3", label: "Marcas líderes" },
               { value: "24/7", label: "Soporte técnico" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center sm:text-left">
-                <div
-                  className="text-3xl font-display text-vk-orange"
-                  style={{ fontFamily: "var(--font-bebas), sans-serif" }}
-                >
-                  {stat.value}
-                </div>
-                <div className="text-xs text-vk-steel font-medium tracking-wide uppercase">
-                  {stat.label}
+            ].map((s) => (
+              <div key={s.label}>
+                <div className="text-3xl font-black text-[#E87722]">{s.value}</div>
+                <div className="text-xs text-gray-400 uppercase tracking-widest mt-0.5">
+                  {s.label}
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
+
+        {/* Right: machine image */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="hidden md:block relative"
+        >
+          <div className="relative h-[520px] w-full">
+            <SafeImage
+              src="/hero/genie-z45-destacada.png"
+              alt="Genie Z-45 plataforma articulada"
+              fill
+              priority
+              className="object-contain drop-shadow-2xl"
+            />
+          </div>
+          {/* Floating badge */}
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-16 -left-6 bg-white rounded-xl shadow-xl p-4 flex items-center gap-3"
+          >
+            <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xs">
+              ✓
+            </div>
+            <div>
+              <div className="text-[#1E4D8C] font-bold text-sm">Certificados ANSI/CSA</div>
+              <div className="text-gray-500 text-xs">Equipos en norma</div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-vk-white/50">
-        <span className="text-xs tracking-[0.25em] uppercase font-medium">
-          Desliza para elevarte
-        </span>
-        <ChevronDown
-          className="h-5 w-5"
-          style={{ animation: "scroll-indicator 2s ease-in-out infinite" }}
-        />
-      </div>
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-xs flex flex-col items-center gap-2 tracking-[0.25em] uppercase"
+      >
+        <span>Desliza para explorar</span>
+        <div className="w-px h-10 bg-gradient-to-b from-white/60 to-transparent" />
+      </motion.div>
     </section>
   );
 }
