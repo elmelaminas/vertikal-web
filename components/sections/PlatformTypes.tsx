@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { buildWhatsAppLink } from "@/lib/constants";
+import { LogoWatermark } from "@/components/ui/LogoWatermark";
 
 const TYPES = [
   {
@@ -36,8 +37,9 @@ const TYPES = [
 
 export function PlatformTypes() {
   return (
-    <section className="bg-[#0A1628] py-24">
-      <div className="container mx-auto px-6">
+    <section className="relative bg-[#0A1628] py-24 overflow-hidden">
+      <LogoWatermark position="bottom-right" size={600} opacity={0.06} variant="dark" rotation={15} />
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

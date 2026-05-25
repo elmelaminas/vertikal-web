@@ -33,8 +33,20 @@ const STATS = [
 
 export function Stats() {
   return (
-    <section className="bg-[#1E4D8C] py-16 border-y-4 border-[#E87722]">
-      <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <section className="relative bg-[#1E4D8C] py-20 border-y-4 border-[#E87722] overflow-hidden">
+      {/* Pattern de logos repetidos como marca de agua */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/logo-vertikal.png')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "180px 180px",
+          opacity: 0.04,
+          mixBlendMode: "screen",
+        }}
+      />
+
+      <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 relative z-10">
         {STATS.map((stat, i) => (
           <motion.div
             key={stat.label}

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { SafeImage } from "@/components/ui/SafeImage";
+import { LogoWatermark } from "@/components/ui/LogoWatermark";
 
 const BRANDS = [
   {
@@ -26,8 +27,11 @@ const BRANDS = [
 
 export function Brands() {
   return (
-    <section className="bg-white py-20">
-      <div className="container mx-auto px-6">
+    <section className="relative bg-white py-20 overflow-hidden">
+      {/* Logo watermark sutil centrado */}
+      <LogoWatermark position="center" size={800} opacity={0.03} variant="light" />
+
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

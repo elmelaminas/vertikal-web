@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 import { SafeImage } from "@/components/ui/SafeImage";
+import { LogoWatermark } from "@/components/ui/LogoWatermark";
 
 export function Hero() {
   return (
@@ -22,6 +23,15 @@ export function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628] via-[#0A1628]/80 to-transparent" />
       </div>
+
+      {/* Logo watermark flotando */}
+      <LogoWatermark
+        position="center"
+        size={900}
+        opacity={0.07}
+        variant="dark"
+        float={true}
+      />
 
       {/* Grid overlay */}
       <div
