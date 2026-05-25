@@ -56,28 +56,15 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between lg:h-20">
           {/* Logo */}
-          <a href="#inicio" className="flex items-center gap-3 group">
-            <div className="relative h-12 w-12 flex-shrink-0 lg:h-14 lg:w-14">
-              <Image
-                src="/logo-vertikal.png"
-                alt="VERTIKAL logo"
-                fill
-                sizes="56px"
-                className="object-contain"
-                priority
-              />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span
-                className="text-2xl lg:text-3xl font-display tracking-wider text-vk-white group-hover:text-vk-orange transition-colors duration-200"
-                style={{ fontFamily: "var(--font-bebas), sans-serif" }}
-              >
-                VERTIKAL
-              </span>
-              <span className="text-[9px] tracking-[0.25em] text-vk-orange font-semibold uppercase">
-                Plataformas Elevables
-              </span>
-            </div>
+          <a href="#inicio" className="flex items-center gap-2 group">
+            <Image
+              src="/logo-vertikal.png"
+              alt="VERTIKAL"
+              width={52}
+              height={52}
+              priority
+              className="object-contain h-12 w-12 md:h-14 md:w-14 transition-opacity duration-200 group-hover:opacity-85"
+            />
           </a>
 
           {/* Desktop nav */}
