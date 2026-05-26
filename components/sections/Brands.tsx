@@ -29,7 +29,7 @@ export function Brands() {
   return (
     <section className="relative bg-white py-20 overflow-hidden">
       {/* Logo watermark sutil centrado */}
-      <LogoWatermark position="center" size={800} opacity={0.06} variant="light" />
+      <LogoWatermark position="center" size={800} opacity={0.08} variant="light" />
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div

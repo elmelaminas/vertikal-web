@@ -28,7 +28,7 @@ export function Hero() {
       <LogoWatermark
         position="center"
         size={900}
-        opacity={0.12}
+        opacity={0.15}
         variant="dark"
         float={true}
       />

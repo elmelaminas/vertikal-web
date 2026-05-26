@@ -92,8 +92,8 @@ const EQUIPMENT = [
 export function Catalog() {
   return (
     <section id="maquinas" className="relative bg-gradient-to-b from-gray-50 to-white py-24 overflow-hidden">
-      <LogoWatermark position="top-right" size={700} opacity={0.08} variant="light" rotation={-12} />
-      <LogoWatermark position="bottom-left" size={500} opacity={0.07} variant="light" rotation={8} />
+      <LogoWatermark position="top-right"  size={700} opacity={0.10} variant="light" rotation={-12} />
+      <LogoWatermark position="bottom-left" size={550} opacity={0.08} variant="light" rotation={8} />
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

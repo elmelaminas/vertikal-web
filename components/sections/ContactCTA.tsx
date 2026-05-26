@@ -27,7 +27,7 @@ export function ContactCTA() {
         className="absolute inset-0 pointer-events-none"
         style={{ y: logoY, scale: logoScale }}
       >
-        <LogoWatermark position="center" size={800} opacity={0.14} variant="dark" />
+        <LogoWatermark position="center" size={800} opacity={0.18} variant="white" />
       </motion.div>
 
       {/* Orange accent lines */}

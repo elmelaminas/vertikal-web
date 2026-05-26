@@ -36,7 +36,7 @@ export function Stats() {
   return (
     <section className="relative bg-[#1E4D8C] py-20 border-y-4 border-[#E87722] overflow-hidden">
       {/* Logo watermark centrado */}
-      <LogoWatermark position="center" size={600} opacity={0.10} variant="dark" />
+      <LogoWatermark position="center" size={650} opacity={0.18} variant="white" />
 
       <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 relative z-10">
         {STATS.map((stat, i) => (
