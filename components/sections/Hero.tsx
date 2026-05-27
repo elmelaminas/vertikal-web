@@ -15,7 +15,7 @@ export function Hero() {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <SafeImage
-          src="/hero/plataforma-obra.jpg"
+          src="/hero/plataforma-obra.png"
           alt="Plataforma elevable en obra"
           fill
           priority
