@@ -19,17 +19,36 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://vertikal-web.vercel.app"),
   title: "VERTIKAL | Plataformas Elevables · Venta · Renta · Servicio",
   description:
     "Venta y renta de plataformas elevables industriales Genie, JLG y Haulotte en México. Servicio técnico certificado, refacciones originales y atención inmediata en CDMX y todo el Bajío.",
   keywords:
     "plataformas elevables México, renta de manlift, Genie JLG Haulotte México, plataformas tijera, plataformas articuladas, plataformas telescópicas, renta de andamios elevados CDMX",
   openGraph: {
-    title: "VERTIKAL | Plataformas Elevables México",
-    description:
-      "Venta y renta de plataformas Genie, JLG y Haulotte. Servicio técnico y refacciones en México.",
     type: "website",
     locale: "es_MX",
+    url: "https://vertikal-web.vercel.app",
+    siteName: "VERTIKAL",
+    title: "VERTIKAL | Plataformas Elevables México",
+    description:
+      "Venta y renta de plataformas elevables Genie, JLG y Haulotte en México. Stock inmediato, servicio técnico 24/7.",
+    images: [
+      {
+        url: "https://vertikal-web.vercel.app/logo-vertikal.png",
+        width: 2048,
+        height: 2048,
+        alt: "VERTIKAL - Plataformas Elevables México",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "VERTIKAL | Plataformas Elevables México",
+    description:
+      "Venta y renta de plataformas elevables Genie, JLG y Haulotte en México.",
+    images: ["https://vertikal-web.vercel.app/logo-vertikal.png"],
   },
 };
 
