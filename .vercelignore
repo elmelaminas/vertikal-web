@@ -1,0 +1,5 @@
+.next
+node_modules
+.git
+build-*.log
+scripts/make-logo-transparent.js
