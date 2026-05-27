@@ -112,24 +112,25 @@ export function Hero() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="hidden md:block relative"
+          className="hidden md:block relative h-[580px] w-full rounded-2xl overflow-hidden"
         >
-          <div className="relative h-[520px] w-full">
-            <SafeImage
-              src="/hero/genie-z45-destacada.png"
-              alt="Genie Z-45 plataforma articulada"
-              fill
-              priority
-              className="object-contain drop-shadow-2xl"
-            />
-          </div>
-          {/* Floating badge */}
+          <SafeImage
+            src="/hero/plataforma-obra.png"
+            alt="Plataforma elevable VERTIKAL en operación"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+          {/* Overlay gradiente para integrar con fondo oscuro */}
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#0A1628]/40" />
+
+          {/* Badge flotante sobre la imagen */}
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-16 -left-6 bg-white rounded-xl shadow-xl p-4 flex items-center gap-3"
+            className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl px-4 py-3 flex items-center gap-3"
           >
-            <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xs">
+            <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
               ✓
             </div>
             <div>
