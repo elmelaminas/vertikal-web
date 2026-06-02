@@ -24,7 +24,7 @@ export default async function Image() {
       >
         {/* Logo */}
         <img
-          src="https://vertikal-web.vercel.app/logo-vertikal.png"
+          src="https://maquinariavertikal.company/logo-vertikal.png"
           width={220}
           height={220}
           style={{ marginBottom: 28, borderRadius: 16 }}
@@ -79,7 +79,7 @@ export default async function Image() {
             borderRadius: 100,
           }}
         >
-          vertikal-web.vercel.app
+          maquinariavertikal.company
         </div>
       </div>
     ),
