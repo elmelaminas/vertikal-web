@@ -80,7 +80,7 @@ export default function RootLayout({
           <WhatsAppButton variant="float" />
         </Providers>
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-16210776268"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18210776268"
           strategy="afterInteractive"
         />
         <Script id="google-ads-tag" strategy="afterInteractive">
@@ -88,7 +88,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'AW-16210776268');
+            gtag('config', 'AW-18210776268');
           `}
         </Script>
       </body>
