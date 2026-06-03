@@ -19,6 +19,7 @@ export function Hero() {
           alt="Plataforma elevable en obra"
           fill
           priority
+          sizes="100vw"
           className="object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628] via-[#0A1628]/80 to-transparent" />
@@ -119,6 +120,7 @@ export function Hero() {
             alt="Plataforma elevable VERTIKAL en operación"
             fill
             priority
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-center"
           />
           {/* Overlay gradiente para integrar con fondo oscuro */}

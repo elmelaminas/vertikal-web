@@ -65,6 +65,7 @@ export function Brands() {
                   src={brand.logo}
                   alt={`${brand.name} logo`}
                   fill
+                  sizes="(max-width: 768px) 192px, 192px"
                   className="object-contain"
                 />
               </div>
