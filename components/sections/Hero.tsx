@@ -3,6 +3,16 @@
 import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
+
+function trackWhatsAppConversion() {
+  if (typeof window !== "undefined" && (window as any).gtag) {
+    (window as any).gtag("event", "conversion", {
+      send_to: "AW-18210776268/N0EICNP9qrgcEMzJyetD",
+      value: 500.0,
+      currency: "MXN",
+    });
+  }
+}
 import { SafeImage } from "@/components/ui/SafeImage";
 import { LogoWatermark } from "@/components/ui/LogoWatermark";
 
@@ -84,6 +94,7 @@ export function Hero() {
               href={buildWhatsAppLink(WHATSAPP_MESSAGES.default)}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={trackWhatsAppConversion}
               className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/40 text-white hover:bg-white hover:text-[#1E4D8C] font-bold rounded-lg transition-all hover:scale-105"
             >
               <MessageCircle className="w-5 h-5" /> Cotizar ahora
