@@ -9,6 +9,16 @@ interface WhatsAppButtonProps {
   label?: string;
 }
 
+function trackWhatsAppConversion() {
+  if (typeof window !== "undefined" && (window as any).gtag) {
+    (window as any).gtag("event", "conversion", {
+      send_to: "AW-16210776268",
+      event_category: "contact",
+      event_label: "whatsapp_click",
+    });
+  }
+}
+
 export function WhatsAppButton({
   variant = "inline",
   message = WHATSAPP_MESSAGES.default,
@@ -23,6 +33,7 @@ export function WhatsAppButton({
         href={link}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={trackWhatsAppConversion}
         className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold rounded-lg transition-all hover:scale-105 shadow-lg"
       >
         <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white">
@@ -62,7 +73,7 @@ export function WhatsAppButton({
           rel="noopener noreferrer"
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
-          onClick={() => setShowTooltip(false)}
+          onClick={() => { setShowTooltip(false); trackWhatsAppConversion(); }}
           className="relative flex items-center justify-center w-20 h-20 bg-[#25D366] hover:bg-[#1ebe5d] rounded-full shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95"
           style={{
             boxShadow:

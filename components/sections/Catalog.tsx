@@ -3,6 +3,16 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Ruler, Weight, Zap } from "lucide-react";
 import { WHATSAPP_NUMBER } from "@/lib/constants";
+
+function trackWhatsAppConversion() {
+  if (typeof window !== "undefined" && (window as any).gtag) {
+    (window as any).gtag("event", "conversion", {
+      send_to: "AW-16210776268",
+      event_category: "contact",
+      event_label: "whatsapp_click",
+    });
+  }
+}
 import { SafeImage } from "@/components/ui/SafeImage";
 import { LogoWatermark } from "@/components/ui/LogoWatermark";
 
@@ -177,6 +187,7 @@ export function Catalog() {
                     href={whatsappLink}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={trackWhatsAppConversion}
                     className="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-[#1E4D8C] hover:bg-[#E87722] text-white font-bold rounded-lg transition-all text-sm"
                   >
                     Cotizar <ArrowUpRight className="w-4 h-4" />

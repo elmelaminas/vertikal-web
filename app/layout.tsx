@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Bebas_Neue } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Providers } from "./providers";
 import { Navbar } from "@/components/layout/Navbar";
@@ -78,6 +79,18 @@ export default function RootLayout({
           {children}
           <WhatsAppButton variant="float" />
         </Providers>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16210776268"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-tag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-16210776268');
+          `}
+        </Script>
       </body>
     </html>
   );
