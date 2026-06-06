@@ -1,20 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import dynamic from "next/dynamic";
 import { MapPin } from "lucide-react";
-
-const MexicoMap = dynamic(
-  () => import("@/components/sections/MexicoMap").then((m) => m.MexicoMap),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="flex h-64 w-full items-center justify-center text-vk-steel text-sm">
-        Cargando mapa...
-      </div>
-    ),
-  }
-);
+import { MexicoMap } from "@/components/sections/MexicoMap";
 
 const COVERAGE_ZONES = [
   { name: "Ciudad de México", priority: true },
