@@ -11,9 +11,9 @@ const NAV_LINKS = [
     label: "MÁQUINAS",
     href: "#maquinas",
     children: [
-      { label: "Genie", href: "#genie" },
-      { label: "JLG", href: "#jlg" },
-      { label: "Haulotte", href: "#haulotte" },
+      { label: "Genie", href: "#maquinas" },
+      { label: "JLG", href: "#maquinas" },
+      { label: "Haulotte", href: "#maquinas" },
     ],
   },
   { label: "RENTA", href: "#renta" },
