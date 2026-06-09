@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
+import { trackWhatsAppConversion } from "@/lib/gtag";
 
 const NAV_LINKS = [
   { label: "INICIO", href: "#inicio" },
@@ -122,6 +123,7 @@ export function Navbar() {
               href={buildWhatsAppLink(WHATSAPP_MESSAGES.default)}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={trackWhatsAppConversion}
               className="inline-flex items-center gap-2 rounded-full bg-vk-orange px-5 py-2.5 text-sm font-bold text-white tracking-wide transition-all duration-200 hover:bg-vk-orange-hot hover:scale-105 orange-glow"
             >
               COTIZAR AHORA
@@ -172,6 +174,7 @@ export function Navbar() {
               href={buildWhatsAppLink(WHATSAPP_MESSAGES.default)}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={trackWhatsAppConversion}
               className="block w-full text-center rounded-full bg-vk-orange py-3 font-bold text-white tracking-wide"
             >
               COTIZAR AHORA

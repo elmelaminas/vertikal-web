@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { TrendingUp, RotateCcw, Settings, Zap } from "lucide-react";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
+import { trackWhatsAppConversion } from "@/lib/gtag";
 
 const SERVICES = [
   {
@@ -193,6 +194,7 @@ export function Services() {
                     href={buildWhatsAppLink(WHATSAPP_MESSAGES[service.messageKey])}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={trackWhatsAppConversion}
                     className={`inline-flex w-full items-center justify-center rounded-xl px-4 py-3 text-sm font-bold text-white transition-all duration-200 ${
                       isOrange
                         ? "bg-vk-orange hover:bg-vk-orange-hot"

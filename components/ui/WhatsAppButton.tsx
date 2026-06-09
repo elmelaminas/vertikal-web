@@ -2,21 +2,12 @@
 
 import { useState } from "react";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
+import { trackWhatsAppConversion } from "@/lib/gtag";
 
 interface WhatsAppButtonProps {
   variant?: "float" | "inline";
   message?: string;
   label?: string;
-}
-
-function trackWhatsAppConversion() {
-  if (typeof window !== "undefined" && (window as any).gtag) {
-    (window as any).gtag("event", "conversion", {
-      send_to: "AW-18210776268/N0EICNP9qrgcEMzJyetD",
-      value: 500.0,
-      currency: "MXN",
-    });
-  }
 }
 
 export function WhatsAppButton({

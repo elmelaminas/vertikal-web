@@ -3,16 +3,7 @@
 import { motion } from "framer-motion";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { buildWhatsAppLink } from "@/lib/constants";
-
-function trackWhatsAppConversion() {
-  if (typeof window !== "undefined" && (window as any).gtag) {
-    (window as any).gtag("event", "conversion", {
-      send_to: "AW-18210776268/N0EICNP9qrgcEMzJyetD",
-      value: 500.0,
-      currency: "MXN",
-    });
-  }
-}
+import { trackWhatsAppConversion } from "@/lib/gtag";
 import { LogoWatermark } from "@/components/ui/LogoWatermark";
 
 const TYPES = [

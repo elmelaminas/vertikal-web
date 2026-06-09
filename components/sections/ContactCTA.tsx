@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Phone, Mail, Clock, MapPin } from "lucide-react";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES, WHATSAPP_NUMBER } from "@/lib/constants";
+import { trackWhatsAppConversion } from "@/lib/gtag";
 import { LogoWatermark } from "@/components/ui/LogoWatermark";
 
 export function ContactCTA() {
@@ -63,6 +64,7 @@ export function ContactCTA() {
             href={buildWhatsAppLink(WHATSAPP_MESSAGES.default)}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={trackWhatsAppConversion}
             className="inline-flex items-center gap-3 rounded-full px-10 py-5 text-lg font-bold text-white shadow-2xl transition-all duration-300 hover:scale-105"
             style={{ backgroundColor: "#25D366" }}
           >
@@ -123,6 +125,7 @@ export function ContactCTA() {
                   {item.href ? (
                     <a
                       href={item.href}
+                      onClick={item.href.startsWith("https://wa.me") ? trackWhatsAppConversion : undefined}
                       className="text-sm font-medium text-white hover:text-[#E87722] transition-colors whitespace-pre-line"
                     >
                       {item.value}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { buildWhatsAppLink } from "@/lib/constants";
+import { trackWhatsAppConversion } from "@/lib/gtag";
 
 const BRANDS = [
   {
@@ -267,6 +268,7 @@ function BrandCard({ brand, index }: { brand: Brand; index: number }) {
             href={buildWhatsAppLink(brand.whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={trackWhatsAppConversion}
             className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-white transition-all duration-200 hover:scale-105"
             style={{ backgroundColor: "#25D366" }}
           >

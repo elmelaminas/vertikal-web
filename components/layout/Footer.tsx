@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
+import { trackWhatsAppConversion } from "@/lib/gtag";
 
 const FOOTER_LINKS = {
   empresa: [
@@ -117,6 +120,7 @@ export function Footer() {
                       href={link.href}
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      onClick={link.href.startsWith("https://wa.me") ? trackWhatsAppConversion : undefined}
                       className="text-sm text-vk-steel hover:text-vk-orange transition-colors duration-200"
                     >
                       {link.label}
